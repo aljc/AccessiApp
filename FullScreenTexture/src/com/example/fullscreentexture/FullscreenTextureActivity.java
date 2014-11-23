@@ -36,6 +36,8 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+
 import com.example.fullscreentexture.R;
 
 public class FullscreenTextureActivity extends Activity {
@@ -45,7 +47,11 @@ public class FullscreenTextureActivity extends Activity {
 	
 	// TPad object defined in TPadLib
 	TPad mTpad;
-	
+
+	Bitmap imageMap ;
+	// Load in the image stored in the drawables folder
+	Bitmap defaultBitmap ;
+	boolean iconView ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,15 +67,27 @@ public class FullscreenTextureActivity extends Activity {
 		
 		// Link local tpad object to the FrictionMapView
 		fricView.setTpad(mTpad);
-		
+		 imageMap = BitmapFactory.decodeResource(getResources(), R.drawable.icons);
 		// Load in the image stored in the drawables folder
-		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.overlays);
-		
-		// Set the friction data bitmap to the test image
-		fricView.setDataBitmap(defaultBitmap);
+		 defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.overlays);
+		iconView = false;
+		 // Set the friction data bitmap to the test image
+		fricView.setDataBitmap(defaultBitmap, defaultBitmap);
 	
 	}
 
+	public void toggle(View pressed) {
+		if (iconView)
+		{
+			iconView = false;
+			fricView.setDataBitmap(defaultBitmap, defaultBitmap);
+		}
+		else
+		{
+			iconView = true;
+			fricView.setDataBitmap(defaultBitmap, imageMap);
+		}
+	}
 	@Override
 	protected void onDestroy() {
 		mTpad.disconnectTPad();

@@ -51,8 +51,10 @@ public class FrictionMapView extends View {
 	private TPad mTpad;
 
 	private Bitmap dataBitmap;
+	private Bitmap image;
 	private Paint dataPaint;
 	private float scaleFactor;
+	private float scaleFactorImage;
 
 	private VelocityTracker vTracker;
 	private static float vy, vx;
@@ -65,7 +67,7 @@ public class FrictionMapView extends View {
 		super(context, attrs);
 		
 		Bitmap defaultBitmap = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
-		setDataBitmap(defaultBitmap);
+		setDataBitmap(defaultBitmap, defaultBitmap);
 
 		dataPaint = new Paint();
 		dataPaint.setColor(Color.DKGRAY);
@@ -80,15 +82,18 @@ public class FrictionMapView extends View {
 	}
 
 
-	public void setDataBitmap(Bitmap bmp) {
+	public void setDataBitmap(Bitmap bmp, Bitmap imageMap) {
 		dataBitmap = null;
 		dataBitmap = bmp.copy(Bitmap.Config.ARGB_8888, true);
+		image = null;
+		image = imageMap.copy(Bitmap.Config.ARGB_8888,true);
 		invalidate();
 
 	}
 
 	private void resetScaleFactor() {		
 		scaleFactor = dataBitmap.getWidth() / (float) width;
+		scaleFactorImage = image.getWidth() / (float) width;
 	}
 
 	@Override
@@ -96,7 +101,7 @@ public class FrictionMapView extends View {
 		super.onDraw(canvas);
 		canvas.drawColor(Color.MAGENTA);
 		resetScaleFactor();
-		Bitmap tempBitmap = Bitmap.createScaledBitmap(dataBitmap, (int)(dataBitmap.getWidth()/scaleFactor), (int)(dataBitmap.getHeight()/scaleFactor), false);
+		Bitmap tempBitmap = Bitmap.createScaledBitmap(image, (int)(image.getWidth()/scaleFactorImage), (int)(image.getHeight()/scaleFactorImage), false);
 		canvas.drawBitmap(tempBitmap, 0,0, dataPaint);
 		tempBitmap.recycle();
 	}
