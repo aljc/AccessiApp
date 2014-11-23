@@ -7,8 +7,9 @@ int drawable demo 0x7f020002
 int drawable filter 0x7f020003
 int drawable ic_launcher 0x7f020004
 int drawable icons 0x7f020005
-int drawable overlays 0x7f020006
-int drawable sixlayers 0x7f020007
+int drawable mock5 0x7f020006
+int drawable overlays 0x7f020007
+int drawable sixlayers 0x7f020008
 int id action_settings 0x7f090003
 int id demo 0x7f090001
 int id toggle 0x7f090000
