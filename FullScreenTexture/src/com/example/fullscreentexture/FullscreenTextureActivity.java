@@ -51,6 +51,9 @@ public class FullscreenTextureActivity extends Activity {
 	Bitmap imageMap ;
 	// Load in the image stored in the drawables folder
 	Bitmap defaultBitmap ;
+	Bitmap bitCalc;
+	Bitmap iconCalc;
+	boolean calcDemo;
 	boolean iconView ;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +73,10 @@ public class FullscreenTextureActivity extends Activity {
 		 imageMap = BitmapFactory.decodeResource(getResources(), R.drawable.icons);
 		// Load in the image stored in the drawables folder
 		 defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.overlays);
-		iconView = false;
+		bitCalc = BitmapFactory.decodeResource(getResources(), R.drawable.androidcalcoverlay);
+		iconCalc = BitmapFactory.decodeResource(getResources(), R.drawable.androidcalc);
+		 iconView = false;
+		calcDemo = false;
 		 // Set the friction data bitmap to the test image
 		fricView.setDataBitmap(defaultBitmap, defaultBitmap);
 	
@@ -80,12 +86,47 @@ public class FullscreenTextureActivity extends Activity {
 		if (iconView)
 		{
 			iconView = false;
-			fricView.setDataBitmap(defaultBitmap, defaultBitmap);
+			if (calcDemo)
+			{
+				fricView.setDataBitmap(bitCalc, bitCalc);
+			}
+			else{
+				fricView.setDataBitmap(defaultBitmap, defaultBitmap);
+			}
 		}
 		else
 		{
 			iconView = true;
-			fricView.setDataBitmap(defaultBitmap, imageMap);
+			if (calcDemo){
+				fricView.setDataBitmap(bitCalc, iconCalc);
+			}
+			else{
+				fricView.setDataBitmap(defaultBitmap, imageMap);
+			}
+		}
+	}
+	
+	public void switchDemo(View pressed){
+		if (calcDemo)
+		{
+			calcDemo = false;
+			if (iconView)
+			{
+				fricView.setDataBitmap(defaultBitmap, imageMap);
+			}
+			else{
+				fricView.setDataBitmap(defaultBitmap, defaultBitmap);
+			}
+		}
+		else
+		{
+			calcDemo = true;
+			if (iconView){
+				fricView.setDataBitmap(bitCalc, iconCalc);
+			}
+			else{
+				fricView.setDataBitmap(bitCalc, bitCalc);
+			}
 		}
 	}
 	@Override

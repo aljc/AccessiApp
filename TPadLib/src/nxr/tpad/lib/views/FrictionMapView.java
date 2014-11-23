@@ -88,6 +88,7 @@ public class FrictionMapView extends View {
 		image = null;
 		image = imageMap.copy(Bitmap.Config.ARGB_8888,true);
 		invalidate();
+		resetScaleFactor();
 
 	}
 

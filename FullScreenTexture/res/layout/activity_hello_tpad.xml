@@ -13,10 +13,14 @@
         android:id="@+id/toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop = "20dp"
         android:onClick="toggle"
-        android:text="Toggle"/>
-    
+        android:text="Toggle View"/>
+    <Button 
+        android:id="@+id/demo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="switchDemo"
+        android:text="Switch Demo"/> 
     <nxr.tpad.lib.views.FrictionMapView
         android:id="@+id/view1"
         android:layout_width="match_parent"

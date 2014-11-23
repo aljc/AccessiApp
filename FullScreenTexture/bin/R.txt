@@ -9,9 +9,10 @@ int drawable ic_launcher 0x7f020004
 int drawable icons 0x7f020005
 int drawable overlays 0x7f020006
 int drawable sixlayers 0x7f020007
-int id action_settings 0x7f090002
+int id action_settings 0x7f090003
+int id demo 0x7f090001
 int id toggle 0x7f090000
-int id view1 0x7f090001
+int id view1 0x7f090002
 int layout activity_hello_tpad 0x7f030000
 int menu hello_tpad 0x7f080000
 int string action_settings 0x7f060001
